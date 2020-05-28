@@ -1,5 +1,5 @@
 <div class="container">
-  <app-header></app-header>
+  <app-header (displayAddProductsForm)="isPopupDisplayed($event)"></app-header>
   <div class="body">
     <div class="filter-container">
       <app-filter (filteredProducts)="filteredData($event)"></app-filter>
@@ -9,5 +9,8 @@
         [filteredProducts]="filteredProductsData"
       ></app-products-list>
     </div>
+  </div>
+  <div class="product-actions" *ngIf="showPopUp">
+    <app-product-actions></app-product-actions>
   </div>
 </div>

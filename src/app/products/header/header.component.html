@@ -1,15 +1,15 @@
 <div class="container">
-    <br>
-    <div class="header">
-        <div class="heading">
-            <div>
-                Products
-            </div>
-        </div>
-        <div class="add-products-btn">
-            <div>
-                <app-button></app-button>
-            </div>
-        </div>
+  <br />
+  <div class="header">
+    <div class="heading">
+      <div>
+        Products
+      </div>
     </div>
+    <div class="add-products-btn">
+      <div>
+        <app-button (buttonClick)="showPopUp($event)"></app-button>
+      </div>
+    </div>
+  </div>
 </div>

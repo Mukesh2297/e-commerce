@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-product-actions',
   templateUrl: './product-actions.component.html',
-  styleUrls: ['./product-actions.component.css']
+  styleUrls: ['./product-actions.component.css'],
 })
 export class ProductActionsComponent implements OnInit {
+  public productCategory: string[];
 
-  constructor() { }
+  public showPopup = false;
 
-  ngOnInit(): void {
+  @ViewChild('addPdt') private formDirective: NgForm;
+
+  constructor(public productService: ProductsService) {}
+
+  ngOnInit() {}
+
+  displayAddProduct() {
+    this.showPopup = true;
   }
 
+  addProduct(productDetails) {}
 }

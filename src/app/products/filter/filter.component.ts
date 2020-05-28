@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ProductsService } from 'src/app/products.service';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'app-filter',
@@ -8,8 +8,6 @@ import { ProductsService } from 'src/app/products.service';
 })
 export class FilterComponent implements OnInit {
   public productCategory: string[];
-
-  // public productsObj = [];
 
   public isFilterApplied = false;
 
@@ -22,19 +20,16 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {}
 
   filterProduct(event) {
-    console.log(event.target.value);
     const filteredProduct = this.productService.filterProduct(
       event.target.value
     );
     this.isFilterApplied = this.productService.isFiltered;
     this.filteredProducts.emit(filteredProduct);
-    console.log(this.productService.isFiltered);
   }
 
   reset() {
     const filteredProduct = this.productService.reset();
     this.isFilterApplied = this.productService.isFiltered;
     this.filteredProducts.emit(filteredProduct);
-    console.log(this.productService.isFiltered);
   }
 }
