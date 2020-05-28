@@ -11,6 +11,8 @@
     </div>
   </div>
   <div class="product-actions" *ngIf="showPopUp">
-    <app-product-actions></app-product-actions>
+    <app-product-actions
+      (hidePopup)="isPopupDisplayed($event)"
+    ></app-product-actions>
   </div>
 </div>

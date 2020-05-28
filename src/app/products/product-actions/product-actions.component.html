@@ -1,9 +1,14 @@
 <div class="pop-up">
   <div class="popup-dialog">
     <div class="popup-content">
+      <div class="close">
+        <div class="close-button">
+          <button (click)="closePopup()">X</button>
+        </div>
+      </div>
       <form (ngSubmit)="addProduct(addPdt)" #addPdt="ngForm">
         <label>Product Category</label><br />
-        <select name="productCategory" ngModel #pdtCategory="ngModel">
+        <select required name="productCategory" ngModel #pdtCategory="ngModel">
           <option *ngFor="let category of productCategory">
             {{ category }}
           </option>
@@ -26,7 +31,7 @@
           class="pdt-details"
           name="productPrice"
           required
-          placeholder="Enter price"
+          placeholder="Enter price (in US$)"
           ngModel
           #pdtPrice="ngModel"
         />
@@ -38,12 +43,12 @@
           #topProduct="ngModel"
         /><span>Top Product</span> <br /><br />
         <label>Upload product Image</label><br />
-        <button>Upload</button>
+        <button class="btn">Upload</button>
         <br /><br />
         <input
           type="text"
           class="filename-input"
-          name="fileName"
+          name="imageSource"
           ngModel
           #fileName="ngModel"
         />
@@ -51,11 +56,15 @@
 
         <div class="form-actions">
           <div class="cancel-btn">
-            <button type="button" (click)="showPopup = false">Cancel</button>
+            <button class="btn" type="button" (click)="closePopup()">
+              Cancel
+            </button>
           </div>
           &nbsp;
           <div class="save-btn">
-            <button type="submit">Save</button>
+            <button class="btn" type="submit" [disabled]="!addPdt.valid">
+              Save
+            </button>
           </div>
         </div>
       </form>

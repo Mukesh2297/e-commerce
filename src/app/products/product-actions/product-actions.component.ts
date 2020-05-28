@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ProductsService } from '../products.service';
 
@@ -12,15 +18,29 @@ export class ProductActionsComponent implements OnInit {
 
   public showPopup = false;
 
+  @Output() hidePopup = new EventEmitter<boolean>();
+
   @ViewChild('addPdt') private formDirective: NgForm;
 
   constructor(public productService: ProductsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.productCategory = this.productService.productCategory;
+  }
 
   displayAddProduct() {
     this.showPopup = true;
   }
 
-  addProduct(productDetails) {}
+  closePopup() {
+    this.hidePopup.emit(false);
+  }
+
+  addProduct(productDetails) {
+    this.productService.addProducts(productDetails.value);
+    console.log(this.productService.productArr);
+    setTimeout(() => {
+      this.formDirective.reset();
+    }, 2000);
+  }
 }

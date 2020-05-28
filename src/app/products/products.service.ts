@@ -4,7 +4,7 @@ export interface Product {
   imageSource: string;
   productTitle: string;
   productPrice: string;
-  category: string;
+  productCategory: string;
   topProduct: boolean;
 }
 
@@ -25,29 +25,29 @@ export class ProductsService {
     {
       imageSource: './../assets/food-product.png',
       productTitle: 'TestProduct1',
-      productPrice: '20$',
-      category: 'groceries',
+      productPrice: '20',
+      productCategory: 'groceries',
       topProduct: false,
     },
     {
       imageSource: './../assets/food-product.png',
       productTitle: 'TestProduct2',
-      productPrice: '30$',
-      category: 'groceries',
+      productPrice: '30',
+      productCategory: 'groceries',
       topProduct: false,
     },
     {
       imageSource: './../assets/food-product.png',
       productTitle: 'TestProduct3',
-      productPrice: '50$',
-      category: 'groceries',
+      productPrice: '50',
+      productCategory: 'groceries',
       topProduct: true,
     },
     {
       imageSource: './../assets/sandisk-pendrive.jpg',
       productTitle: 'Sandisk Pendrive',
-      productPrice: '60$',
-      category: 'electronics',
+      productPrice: '60',
+      productCategory: 'electronics',
       topProduct: false,
     },
   ];
@@ -58,10 +58,15 @@ export class ProductsService {
     return this.productArr;
   }
 
+  addProducts(newProd: Product) {
+    this.productArr.push(newProd);
+  }
+
   filterProduct(category: string) {
     this.isFiltered = true;
     return this.productArr.filter(
-      (pdtObj) => pdtObj.category.toLowerCase() === category.toLowerCase()
+      (pdtObj) =>
+        pdtObj.productCategory.toLowerCase() === category.toLowerCase()
     );
   }
 
