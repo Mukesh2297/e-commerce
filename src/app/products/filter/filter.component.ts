@@ -15,26 +15,26 @@ export class FilterComponent implements OnInit {
 
   @Output() filteredProducts = new EventEmitter<any>();
 
-  @Output() allProducts = new EventEmitter<any>();
-
-  constructor(private pdtService: ProductsService) {
-    this.productCategory = pdtService.productCategory;
+  constructor(private productService: ProductsService) {
+    this.productCategory = productService.productCategory;
   }
 
   ngOnInit(): void {}
 
   filterProduct(event) {
     console.log(event.target.value);
-    this.isFilterApplied = true;
-    const filteredProduct = this.pdtService.filterProduct(event.target.value);
+    const filteredProduct = this.productService.filterProduct(
+      event.target.value
+    );
+    this.isFilterApplied = this.productService.isFiltered;
     this.filteredProducts.emit(filteredProduct);
-    this.pdtService.isFiltered = true;
-    console.log(this.pdtService.isFiltered);
+    console.log(this.productService.isFiltered);
   }
 
-  removeFilter() {
-    this.allProducts.emit(this.pdtService.displayProduct);
-    this.pdtService.isFiltered = false;
-    this.isFilterApplied = false;
+  reset() {
+    const filteredProduct = this.productService.reset();
+    this.isFilterApplied = this.productService.isFiltered;
+    this.filteredProducts.emit(filteredProduct);
+    console.log(this.productService.isFiltered);
   }
 }

@@ -2,15 +2,11 @@
   <app-header></app-header>
   <div class="body">
     <div class="filter-container">
-      <app-filter
-        (filteredProducts)="filteredData($event)"
-        (allProducts)="noFilter($event)"
-      ></app-filter>
+      <app-filter (filteredProducts)="filteredData($event)"></app-filter>
     </div>
     <div class="products-container">
       <app-products-list
         [filteredProducts]="filteredProductsData"
-        [allProducts]="noFilteredProducts"
       ></app-products-list>
     </div>
   </div>

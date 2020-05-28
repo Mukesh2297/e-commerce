@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Product, ProductsService } from './../products.service';
 
 @Component({
   selector: 'app-products',
@@ -6,19 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
-  public filteredProductsData: string[];
+  public filteredProductsData: Product[];
 
-  public noFilteredProducts: string[];
+  constructor(public productService: ProductsService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filteredProductsData = this.productService.getProducts();
+  }
 
   filteredData(event) {
     this.filteredProductsData = event;
-  }
-
-  noFilter(event) {
-    this.noFilteredProducts = event;
   }
 }
