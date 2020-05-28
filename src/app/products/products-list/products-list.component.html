@@ -1,7 +1,7 @@
 <div class="container">
     <div class="products">
         <div class="products-list" *ngFor= "let pdt of productArr" >
-            <app-product></app-product>
+            <app-product [pdt]="pdt"></app-product>
         </div>
     </div>
 </div>

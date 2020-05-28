@@ -1,1 +1,12 @@
-<div class="product-tile"></div>
+<!-- <div class="product-tile">
+    {{pdt.title}}
+</div> -->
+
+
+<div class="product-tile">
+    <img [src]="pdt.imageSource" alt="Avatar" style="width:100%" height="200px" >
+    <div class="container">
+      <h4><b>{{pdt.productTitle}}</b></h4>
+      <p>{{pdt.productPrice}}</p>
+    </div>
+  </div>

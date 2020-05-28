@@ -5,7 +5,15 @@ import { Injectable } from '@angular/core';
 })
 export class ProductsService {
 
-  public productArr: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  public productCategory: string[] = ['Groceries', 'Electronics', 'Fitness', 'Clothing'];
+
+
+
+  public productArr: {imageSource: string, productTitle: string, productPrice: string}[] = [
+    {imageSource: './../assets/food-product.png', productTitle: 'TestProduct1', productPrice: '20$'},
+    {imageSource: './../assets/food-product.png', productTitle: 'TestProduct2', productPrice: '30$'},
+    {imageSource: './../assets/food-product.png', productTitle: 'TestProduct3', productPrice: '50$'}
+  ];
 
   constructor() { }
 }

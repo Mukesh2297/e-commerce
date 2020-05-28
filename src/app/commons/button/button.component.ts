@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-button',
@@ -7,9 +9,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
 
-  constructor() { }
+  public productCategory: string[];
+
+  public showPopup = false;
+
+  @ViewChild('addPdt') private formDirective: NgForm;
+
+  constructor(private pdtService: ProductsService) {
+    this.productCategory = pdtService.productCategory;
+   }
 
   ngOnInit(): void {
+  }
+
+  displayAddProduct(){
+
+    this.showPopup = true ;
+
+  }
+
+  addProduct(productDetails){
+
+    console.log(productDetails.value);
+
+
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'src/app/products.service';
 
 @Component({
   selector: 'app-filter',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilterComponent implements OnInit {
 
-  constructor() { }
+  public productCategory: string[];
+
+  constructor(private pdtService: ProductsService) {
+    this.productCategory = pdtService.productCategory;
+   }
 
   ngOnInit(): void {
   }
