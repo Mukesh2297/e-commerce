@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { type } from 'os';
+import { Observable } from 'rxjs';
 
 export interface Product {
   imageSource: string;
@@ -30,6 +30,10 @@ export class ProductsService {
     { sortValue: 1, sortString: 'price low to high' },
     { sortValue: 2, sortString: 'price high to low' },
   ];
+
+  public TOTAL_ITEMS_PER_PAGE = 9;
+
+  public currentPage: number;
 
   public isFiltered = false;
 
@@ -108,8 +112,12 @@ export class ProductsService {
 
   constructor() {}
 
-  getProducts() {
-    return this.productArr;
+  getProducts(currentPage: number) {
+    this.currentPage = currentPage;
+    return this.productArr.slice(
+      this.currentPage * this.TOTAL_ITEMS_PER_PAGE,
+      this.TOTAL_ITEMS_PER_PAGE * this.currentPage + this.TOTAL_ITEMS_PER_PAGE
+    );
   }
 
   addProducts(newProd: Product) {
@@ -131,12 +139,34 @@ export class ProductsService {
     );
   }
 
-  // sortProduct(sortValue) {
-  //   return this.productArr.sort(() => {});
-  // }
+  sortProduct(sortValue: number) {
+    const clonedProductArr = Array.from(this.productArr);
+
+    let sortedArr: Product[] = [];
+    if (Number(sortValue) === 1) {
+      sortedArr = clonedProductArr.sort(
+        (a, b) => Number(a.productPrice) - Number(b.productPrice)
+      );
+      return this.arraySorting(sortedArr);
+    } else if (Number(sortValue) === 2) {
+      sortedArr = clonedProductArr.sort(
+        (a, b) => Number(b.productPrice) - Number(a.productPrice)
+      );
+      return this.arraySorting(sortedArr);
+    } else {
+      return this.arraySorting(this.productArr);
+    }
+  }
 
   reset() {
     this.isFiltered = false;
     return this.productArr;
+  }
+
+  arraySorting(array: Product[]) {
+    return array.slice(
+      this.currentPage * this.TOTAL_ITEMS_PER_PAGE,
+      this.TOTAL_ITEMS_PER_PAGE * this.currentPage + this.TOTAL_ITEMS_PER_PAGE
+    );
   }
 }

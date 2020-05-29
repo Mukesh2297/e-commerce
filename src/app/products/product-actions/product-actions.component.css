@@ -114,3 +114,32 @@ p {
   );
   border: none;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .popup-dialog {
+    width: 400px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+  }
+  .close {
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -85px;
+    margin-right: -55px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .popup-dialog {
+    width: 400px;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+  }
+}

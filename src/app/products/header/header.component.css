@@ -15,3 +15,15 @@
 .add-products-btn {
   padding-right: 10px;
 }
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .add-button {
+    margin-right: 50px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .add-button {
+    margin-right: -115px;
+  }
+}

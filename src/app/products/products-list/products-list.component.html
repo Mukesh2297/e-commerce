@@ -15,4 +15,17 @@
       </div>
     </div>
   </div>
+  <div class="pagination">
+    <div class="page-value">
+      <div class="page-number" *ngFor="let item of pageValue; index as i">
+        <button
+          [ngClass]="{ 'page-number-button': i === btnValue }"
+          [value]="i"
+          (click)="changePage(i)"
+        >
+          {{ i + 1 }}
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -9,7 +9,11 @@ import { ProductsService, Sorting } from '../products.service';
 export class ProductsListComponent implements OnInit {
   @Input() public filteredProducts;
 
+  @Input() public pageValue;
+
   public sorting: Sorting[];
+
+  public btnValue = 0;
 
   constructor(public productService: ProductsService) {}
 
@@ -19,5 +23,12 @@ export class ProductsListComponent implements OnInit {
 
   sortProducts(event) {
     console.log(event.target.value);
+    this.filteredProducts = this.productService.sortProduct(event.target.value);
+    console.log(this.filteredProducts);
+  }
+
+  changePage(currentPage) {
+    this.btnValue = currentPage;
+    this.filteredProducts = this.productService.getProducts(currentPage);
   }
 }

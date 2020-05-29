@@ -9,12 +9,25 @@ import { Product, ProductsService } from './../products/products.service';
 export class ProductsComponent implements OnInit {
   public filteredProductsData: Product[];
 
+  public currentPage = 0;
+
+  public totalProductResult: number;
+
+  public pageValue: number[] = [];
+
   public showPopUp: boolean;
 
   constructor(public productService: ProductsService) {}
 
   ngOnInit(): void {
-    this.filteredProductsData = this.productService.getProducts();
+    const totalItemsPerPage = this.productService.TOTAL_ITEMS_PER_PAGE;
+    this.totalProductResult = Math.ceil(
+      this.productService.productArr.length / totalItemsPerPage
+    );
+    this.filteredProductsData = this.productService.getProducts(
+      this.currentPage
+    );
+    this.pageValue = Array(this.totalProductResult).fill(0);
   }
 
   isPopupDisplayed(event) {
