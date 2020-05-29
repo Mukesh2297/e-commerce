@@ -33,6 +33,8 @@ export class ProductsService {
 
   public TOTAL_ITEMS_PER_PAGE = 9;
 
+  public currentSortingOrder = null;
+
   public currentPage: number;
 
   public isFiltered = false;
@@ -114,21 +116,14 @@ export class ProductsService {
 
   getProducts(currentPage: number) {
     this.currentPage = currentPage;
-    return this.productArr.slice(
-      this.currentPage * this.TOTAL_ITEMS_PER_PAGE,
-      this.TOTAL_ITEMS_PER_PAGE * this.currentPage + this.TOTAL_ITEMS_PER_PAGE
-    );
+    return this.sortProduct(this.currentSortingOrder);
   }
 
   addProducts(newProd) {
     return readUploadedFileAsDataURL(newProd.imageSource).then((result) => {
       const newProduct = { ...newProd, imageSource: result };
       this.productArr.push(newProduct);
-      let clonedProductsArr = Array.from(this.productArr);
-      clonedProductsArr = clonedProductsArr.sort(
-        (a, b) => Number(a.productPrice) - Number(b.productPrice)
-      );
-      return this.arraySlicing(clonedProductsArr);
+      return this.sortProduct(this.currentSortingOrder);
     });
   }
 
@@ -148,6 +143,7 @@ export class ProductsService {
   }
 
   sortProduct(sortValue: number) {
+    this.currentSortingOrder = sortValue;
     const clonedProductArr = Array.from(this.productArr);
 
     let sortedArr: Product[] = [];

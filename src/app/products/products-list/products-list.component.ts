@@ -31,4 +31,8 @@ export class ProductsListComponent implements OnInit {
     this.btnValue = currentPage;
     this.filteredProducts = this.productService.getProducts(currentPage);
   }
+
+  productToBeEdited(event) {
+    console.log(event);
+  }
 }

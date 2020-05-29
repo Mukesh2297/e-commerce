@@ -11,7 +11,10 @@
   <div class="container">
     <div class="products">
       <div class="products-list" *ngFor="let pdt of filteredProducts">
-        <app-product [pdt]="pdt"></app-product>
+        <app-product
+          [pdt]="pdt"
+          (editProduct)="productToBeEdited($event)"
+        ></app-product>
       </div>
     </div>
   </div>
