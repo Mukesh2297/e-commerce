@@ -1,12 +1,76 @@
-.container{
-    width: 200px;
-    height: 100%;
-    background-color:gainsboro;
+.container {
+  width: 250px;
+  height: 100%;
 }
 
-.category-content{
-
-    padding: 1rem;
-
+h4 {
+  color: gray;
+  font-weight: bold;
+  font-size: small;
 }
 
+.category-content {
+  padding: 1rem;
+}
+
+.category {
+  width: 220px;
+  height: 50px;
+  background-color: rgb(243, 242, 242);
+  border-radius: 4px;
+}
+
+.category button {
+  width: 220px;
+  height: 50px;
+  font-weight: bold;
+  text-align: left;
+  padding: 15px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.slider-actions {
+  width: 230px;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filtered-price {
+  font-size: small;
+}
+
+.slider-filter-btn {
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background-color: rgb(245, 75, 75);
+  border-radius: 8px;
+}
+
+.slider-filter-btn {
+  width: 70px;
+  height: 30px;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.top-product-image {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 40px;
+}
+
+.top-product-info {
+  width: 100%;
+  height: 30px;
+  display: flex;
+}
+
+.product-info {
+  padding: 1.5px;
+}

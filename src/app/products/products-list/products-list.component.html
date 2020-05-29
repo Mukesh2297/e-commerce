@@ -1,7 +1,18 @@
-<div class="container">
-  <div class="products">
-    <div class="products-list" *ngFor="let pdt of filteredProducts">
-      <app-product [pdt]="pdt"></app-product>
+<div class="parent-container">
+  <div class="sorting">
+    <div class="sorting-select">
+      <select (change)="sortProducts($event)">
+        <option [value]="sortItem.sortValue" *ngFor="let sortItem of sorting">
+          {{ sortItem.sortString | titlecase }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="container">
+    <div class="products">
+      <div class="products-list" *ngFor="let pdt of filteredProducts">
+        <app-product [pdt]="pdt"></app-product>
+      </div>
     </div>
   </div>
 </div>

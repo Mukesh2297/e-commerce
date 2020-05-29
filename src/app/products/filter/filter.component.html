@@ -6,10 +6,61 @@
         {{ categoryItem }}
       </button>
     </div>
-    <ng-container *ngIf="isFilterApplied">
-      <button (click)="reset()">
-        Remove All Filters
-      </button>
+    <ng-container class="category" *ngIf="isFilterApplied">
+      <div class="category">
+        <button (click)="reset()">
+          Remove All Filters
+        </button>
+      </div>
     </ng-container>
+    <br /><br />
+    <div class="slider">
+      <div class="slider-heading">
+        <h4>FILTER BY PRICE</h4>
+      </div>
+      <br />
+      <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+      <br />
+      <div class="slider-actions">
+        <div class="filter">
+          <button class="slider-filter-btn" (click)="filterProductByPrice()">
+            Filter
+          </button>
+        </div>
+        <div class="filtered-price">
+          <span>Price:</span> {{ value | currency }} -
+          {{ options.ceil | currency }}
+        </div>
+      </div>
+    </div>
+    <br /><br />
+    <div class="top-products">
+      <div class="top-products-content">
+        <h4>TOP PRODUCTS</h4>
+        <div class="top-product-image" *ngFor="let pdt of topProducts">
+          <div class="top-product-info">
+            <div class="product-tile">
+              <img
+                [src]="pdt.imageSource"
+                alt="Avatar"
+                style="width: 50px;"
+                height="50px"
+              />
+            </div>
+            <div class="top-product-description">
+              <div class="product-info">
+                <span>{{ pdt.productTitle }}</span>
+              </div>
+              <div class="product-info">
+                <app-rating></app-rating>
+              </div>
+              <div class="product-info">
+                <span>{{ pdt.productPrice | currency }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

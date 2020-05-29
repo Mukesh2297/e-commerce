@@ -22,15 +22,28 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: teal;
+  background-color: whitesmoke;
 }
 
 .close {
   height: 40px;
   display: flex;
   justify-content: flex-end;
-  margin-top: -20px;
-  margin-right: -50px;
+  margin-top: -45px;
+  margin-right: -55px;
+}
+
+.close button {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(238, 111, 8, 0.651) 0%,
+    rgba(247, 62, 49, 0.65) 100%
+  );
+  text-decoration: none;
 }
 
 select,
@@ -39,6 +52,8 @@ select,
   height: 30px;
   border-radius: 4px;
   margin-top: 5px;
+  border: none;
+  padding-left: 10px;
 }
 
 p {
@@ -58,4 +73,44 @@ p {
   height: 35px;
   border-radius: 4px;
   margin-top: 5px;
+  border: none;
+  cursor: pointer;
+}
+.upload-label {
+  padding-bottom: 10px;
+}
+
+.upload-btn {
+  width: 140px;
+  height: 35px;
+  border-radius: 4px;
+  margin-top: 5px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid tomato;
+  padding: 5px 25px;
+}
+
+.cancel-btn {
+  width: 140px;
+  height: 35px;
+  border-radius: 4px;
+  margin-top: 5px;
+  cursor: pointer;
+  background-color: rgb(184, 180, 180);
+  border: none;
+}
+
+.save-btn {
+  width: 140px;
+  height: 35px;
+  border-radius: 4px;
+  margin-top: 5px;
+  cursor: pointer;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(238, 111, 8, 0.651) 0%,
+    rgba(247, 62, 49, 0.65) 100%
+  );
+  border: none;
 }

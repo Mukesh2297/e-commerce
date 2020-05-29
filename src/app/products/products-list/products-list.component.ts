@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ProductsService, Sorting } from '../products.service';
 
 @Component({
   selector: 'app-products-list',
@@ -8,7 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductsListComponent implements OnInit {
   @Input() public filteredProducts;
 
-  constructor() {}
+  public sorting: Sorting[];
 
-  ngOnInit() {}
+  constructor(public productService: ProductsService) {}
+
+  ngOnInit() {
+    this.sorting = this.productService.sortProducts;
+  }
+
+  sortProducts(event) {
+    console.log(event.target.value);
+  }
 }

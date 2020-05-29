@@ -9,6 +9,7 @@
       <form (ngSubmit)="addProduct(addPdt)" #addPdt="ngForm">
         <label>Product Category</label><br />
         <select required name="productCategory" ngModel #pdtCategory="ngModel">
+          <option value="" disabled selected>Select</option>
           <option *ngFor="let category of productCategory">
             {{ category }}
           </option>
@@ -42,8 +43,21 @@
           ngModel
           #topProduct="ngModel"
         /><span>Top Product</span> <br /><br />
-        <label>Upload product Image</label><br />
-        <button class="btn">Upload</button>
+        <div class="upload-label">
+          <label>Upload product Image</label><br />
+        </div>
+        <input
+          type="file"
+          required
+          name="imageSource"
+          ngModel
+          id="selectFile"
+          accept="image/*"
+          style="display: none;"
+          (change)="uploadImage()"
+          #imageSource="ngModel"
+        />
+        <label for="selectFile" class="upload-btn">Upload</label>
         <br /><br />
         <input
           type="text"
@@ -55,14 +69,14 @@
         <br /><br />
 
         <div class="form-actions">
-          <div class="cancel-btn">
-            <button class="btn" type="button" (click)="closePopup()">
+          <div class="cancel">
+            <button class="cancel-btn" type="button" (click)="closePopup()">
               Cancel
             </button>
           </div>
           &nbsp;
-          <div class="save-btn">
-            <button class="btn" type="submit" [disabled]="!addPdt.valid">
+          <div class="save">
+            <button class="save-btn" type="submit" [disabled]="!addPdt.valid">
               Save
             </button>
           </div>

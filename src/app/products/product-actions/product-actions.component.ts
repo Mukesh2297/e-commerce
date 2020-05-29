@@ -37,10 +37,26 @@ export class ProductActionsComponent implements OnInit {
   }
 
   addProduct(productDetails) {
-    this.productService.addProducts(productDetails.value);
-    console.log(this.productService.productArr);
-    setTimeout(() => {
-      this.formDirective.reset();
-    }, 2000);
+    let newProduct = {
+      ...productDetails.value,
+      imageSource: null,
+    };
+
+    console.log(newProduct);
+
+    const img = (document.getElementById('selectFile') as HTMLInputElement)
+      .files[0];
+
+    const fr = new FileReader();
+    fr.onload = () => {
+      newProduct = { ...newProduct, imageSource: fr.result };
+
+      this.productService.addProducts(newProduct);
+    };
+    fr.readAsDataURL(img);
+
+    this.hidePopup.emit(false);
   }
+
+  uploadImage() {}
 }

@@ -15,6 +15,9 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.filteredProductsData = this.productService.getProducts();
+    if (this.filteredProductsData.length > 9) {
+      this.filteredProductsData.splice(9);
+    }
   }
 
   isPopupDisplayed(event) {

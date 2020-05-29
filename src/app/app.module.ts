@@ -10,8 +10,8 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { ProductComponent } from './products/products-list/product/product.component';
 import { ButtonComponent } from './commons/button/button.component';
 import { ProductActionsComponent } from './products/product-actions/product-actions.component';
-
-
+import { Ng5SliderModule } from 'ng5-slider';
+import { RatingComponent } from './commons/rating/rating.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +22,16 @@ import { ProductActionsComponent } from './products/product-actions/product-acti
     ProductsListComponent,
     ProductComponent,
     ButtonComponent,
-    ProductActionsComponent
+    ProductActionsComponent,
+    RatingComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    Ng5SliderModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

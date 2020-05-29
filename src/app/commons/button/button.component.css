@@ -3,4 +3,13 @@ button {
   height: 35px;
   border-radius: 4px;
   margin-top: 5px;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  background: -webkit-linear-gradient(
+    left,
+    rgba(238, 111, 8, 0.651) 0%,
+    rgba(247, 62, 49, 0.65) 100%
+  );
 }
