@@ -6,7 +6,7 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ProductsService } from '../products.service';
+import { ProductsService, Product } from '../products.service';
 
 @Component({
   selector: 'app-product-actions',
@@ -20,7 +20,7 @@ export class ProductActionsComponent implements OnInit {
 
   @Output() hidePopup = new EventEmitter<boolean>();
 
-  @ViewChild('addPdt') private formDirective: NgForm;
+  @Output() addNewProduct = new EventEmitter<Product>();
 
   constructor(public productService: ProductsService) {}
 
@@ -37,24 +37,14 @@ export class ProductActionsComponent implements OnInit {
   }
 
   addProduct(productDetails) {
-    let newProduct = {
-      ...productDetails.value,
-      imageSource: null,
-    };
-
-    console.log(newProduct);
-
     const img = (document.getElementById('selectFile') as HTMLInputElement)
       .files[0];
-
-    const fr = new FileReader();
-    fr.onload = () => {
-      newProduct = { ...newProduct, imageSource: fr.result };
-
-      this.productService.addProducts(newProduct);
+    const newProduct = {
+      ...productDetails.value,
+      imageSource: img,
     };
-    fr.readAsDataURL(img);
 
+    this.addNewProduct.emit(newProduct);
     this.hidePopup.emit(false);
   }
 

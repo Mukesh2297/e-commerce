@@ -37,4 +37,11 @@ export class ProductsComponent implements OnInit {
   filteredData(event) {
     this.filteredProductsData = event;
   }
+
+  addNewProductInfo(product: Product) {
+    console.log(product);
+    this.productService.addProducts(product).then((products) => {
+      this.filteredProductsData = products;
+    });
+  }
 }

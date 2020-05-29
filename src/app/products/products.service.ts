@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { readUploadedFileAsDataURL } from '../products/utilities';
 
 export interface Product {
   imageSource: string;
@@ -120,8 +120,16 @@ export class ProductsService {
     );
   }
 
-  addProducts(newProd: Product) {
-    this.productArr.push(newProd);
+  addProducts(newProd) {
+    return readUploadedFileAsDataURL(newProd.imageSource).then((result) => {
+      const newProduct = { ...newProd, imageSource: result };
+      this.productArr.push(newProduct);
+      let clonedProductsArr = Array.from(this.productArr);
+      clonedProductsArr = clonedProductsArr.sort(
+        (a, b) => Number(a.productPrice) - Number(b.productPrice)
+      );
+      return this.arraySlicing(clonedProductsArr);
+    });
   }
 
   filterProduct(category) {
@@ -147,14 +155,14 @@ export class ProductsService {
       sortedArr = clonedProductArr.sort(
         (a, b) => Number(a.productPrice) - Number(b.productPrice)
       );
-      return this.arraySorting(sortedArr);
+      return this.arraySlicing(sortedArr);
     } else if (Number(sortValue) === 2) {
       sortedArr = clonedProductArr.sort(
         (a, b) => Number(b.productPrice) - Number(a.productPrice)
       );
-      return this.arraySorting(sortedArr);
+      return this.arraySlicing(sortedArr);
     } else {
-      return this.arraySorting(this.productArr);
+      return this.arraySlicing(this.productArr);
     }
   }
 
@@ -163,7 +171,7 @@ export class ProductsService {
     return this.productArr;
   }
 
-  arraySorting(array: Product[]) {
+  arraySlicing(array: Product[]) {
     return array.slice(
       this.currentPage * this.TOTAL_ITEMS_PER_PAGE,
       this.TOTAL_ITEMS_PER_PAGE * this.currentPage + this.TOTAL_ITEMS_PER_PAGE
